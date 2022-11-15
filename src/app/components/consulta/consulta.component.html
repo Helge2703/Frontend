@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section class="vh-auto gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+      
+                  <div class="mb-md-5 mt-md-4 pb-5">
+      
+                    <h2 class="fw-bold mb-2 text-uppercase">Consulta</h2>
+                    <p class="text-white-50 mb-5">Por favor ingrese los datos a consultar</p>
+      
+                    <div class="form-outline form-white mb-4">
+                      <input type="text" id="modalidadContrato" class="form-control form-control-lg" [(ngModel)]="modalidadContrato" name="modalidadContrato"/>
+                      <label class="form-label" for="text">Modalidad de contrato</label>
+                    </div>
+      
+                    <div class="form-outline form-white mb-4">
+                      <input type="text" id="consulta" class="form-control form-control-lg" [(ngModel)]="consulta" name="consulta"/>
+                      <label class="form-label" for="consulta">Consulta</label>
+                    </div>
+
+                    <div class="form-outline form-white mb-4">
+                        <input type="date" id="fechainicio" class="form-control form-control-lg" [(ngModel)]="fechaInicio" name="fechaInicio" />
+                        <label class="form-label" for="fechainicio">Fecha inico</label>
+                    </div>
+
+                    <div class="form-outline form-white mb-4">
+                        <input type="date" id="fechafin" class="form-control form-control-lg" [(ngModel)]="fechaFinal" name="fechaFinal"/>
+                        <label class="form-label" for="fechafin">Fecha final</label>
+                    </div>
+
+                    <div class="form-outline form-white mb-4">
+                        <input type="text" id="departamentoContrato" class="form-control form-control-lg" [(ngModel)]="departamentoContrato" name="departamentoConsulta"/>
+                        <label class="form-label" for="departamentoContrato">Departamento Contrato</label>
+                    </div>
+                    
+                    <a class="nav-link" ><button class="btn btn-outline-light btn-lg px-5 "type="button" (click)="consultar()">Consulta</button></a>
+
+                    
+      
+     
+                  </div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+</body>
+</html>
