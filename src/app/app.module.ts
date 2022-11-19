@@ -12,6 +12,8 @@ import { ConsultaComponent } from './components/consulta/consulta.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule} from '@angular/common/http';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { UserComponent } from './components/user/user.component';
 
 
 
@@ -23,7 +25,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MenuComponent,
     TarjetaComponent,
     ConsultaComponent,
-    DashboardComponent
+    DashboardComponent,
+    AdminComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

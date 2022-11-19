@@ -16,7 +16,7 @@
                         </tr>
                         </thead>
                         <tbody >
-                            <tr *ngFor="let resultado of listadoConsulta">
+                            <tr *ngFor="let resultado of this.listadoConsulta">
                                 <td scope="row">{{resultado.id_contrato}}</td>
                                 <td>{{resultado.referencia_del_contrato}}</td>
                                 <td>${{resultado.valor_del_contrato}}</td>

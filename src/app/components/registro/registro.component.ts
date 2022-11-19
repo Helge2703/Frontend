@@ -8,7 +8,7 @@ import { RegistroService } from 'src/app/services/registro.service';
   styleUrls: ['./registro.component.scss'],
 })
 export class RegistroComponent implements OnInit {
-  id: number;
+
   nombre: string = '';
   apellido: string = '';
   email: string = '';
@@ -33,7 +33,7 @@ export class RegistroComponent implements OnInit {
   registro() {
     let persona = new PersonaModel();
 
-    persona.id = this.id;
+
     persona.nombre = this.nombre;
     persona.apellido = this.apellido;
     persona.email = this.email;

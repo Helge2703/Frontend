@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {  Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConsultaModel } from '../model/consulta-model';
 
@@ -8,6 +8,8 @@ import { ConsultaModel } from '../model/consulta-model';
 export class ConsultaService {
 
   url="http://[::1]:3000/consultas";
+
+
 
   constructor(private http : HttpClient) { }
 

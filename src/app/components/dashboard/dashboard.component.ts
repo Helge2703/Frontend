@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultaSecopII } from 'src/app/model/consulta-secop-ii';
-import { ConsultaSecopIIService } from 'src/app/services/consulta-secop-ii.service';
+import { ConsultaEventService } from 'src/app/services/consulta-event.service';
+import { ConsultaSecopIIService } from 'src/app/services/consulta-secop-ii.service';import { ConsultaService } from 'src/app/services/consulta.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,22 +10,34 @@ import { ConsultaSecopIIService } from 'src/app/services/consulta-secop-ii.servi
 })
 export class DashboardComponent implements OnInit {
   
-  
+  public consulta:string="";
+
   id_contrato: string;
   referencia_del_contrato: string;
   valor_del_contrato: number;
   departamento: string;
   urlproceso: string;
 
+
+
   listadoConsulta = new Array<ConsultaSecopII>();
 
-  constructor(private consultaService : ConsultaSecopIIService) {}
+  constructor(private consultaService : ConsultaSecopIIService,
+              private eventService:ConsultaEventService) {}
 
   ngOnInit(): void {
-    this.consultaService.consultaPersonalizada("").subscribe(data =>{
-      this.listadoConsulta = Object.values(data);
-      console.log(this.listadoConsulta)
+    
+
+
+    this.eventService.consultaEvent.subscribe(consultaString =>{  
+      this.consulta = consultaString 
+
     })
+    
+      this.consultaService.consultaPersonalizada(this.consulta).subscribe(data =>{  
+        this.listadoConsulta = Object.values(data);
+        console.log(this.listadoConsulta) 
+      })
   }
 
   mostarListado() {
@@ -37,6 +50,6 @@ export class DashboardComponent implements OnInit {
     resultado.urlproceso= this.urlproceso;
 
     this.listadoConsulta.push(resultado);
-
+    console.log(this.listadoConsulta)
   }
 }

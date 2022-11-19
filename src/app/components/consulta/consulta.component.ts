@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { ConsultaModel } from 'src/app/model/consulta-model';
 import { ConsultaService } from 'src/app/services/consulta.service';
 import { ConsultaSecopIIService } from 'src/app/services/consulta-secop-ii.service';
+import { ConsultaEventService } from 'src/app/services/consulta-event.service';
 
 @Component({
   selector: 'app-consulta',
@@ -9,6 +10,8 @@ import { ConsultaSecopIIService } from 'src/app/services/consulta-secop-ii.servi
   styleUrls: ['./consulta.component.scss']
 })
 export class ConsultaComponent implements OnInit {
+
+  consultaSecopII = new EventEmitter<string>(); 
 
   modalidadContrato:string="";
   consulta:string="";
@@ -20,13 +23,13 @@ export class ConsultaComponent implements OnInit {
 
   listaConsulta = new Array<ConsultaModel>();
 
-  constructor(private consultaService:ConsultaService,private consultaSecopIIService:ConsultaSecopIIService) { }
+  constructor(private consultaService:ConsultaService,
+              private consultaSecopIIService:ConsultaSecopIIService,
+              private eventService:ConsultaEventService) { }
 
   ngOnInit(): void {
 
-    this.consultaService.obtenerConsultas().subscribe(data =>{
-      console.log(data);
-    });
+
 
   }
   consultar(){
@@ -43,25 +46,33 @@ export class ConsultaComponent implements OnInit {
     consulta.departamentoContrato = this.departamentoContrato;
     consulta.fechaConsulta= (fechaActual).toString();
     consulta.idUsuario="001";
+
+    //Datos para el String consulta
     stringConsulta="modalidad_de_contratacion="
     +this.modalidadContrato.replace(" ","%20")
-    +"&&descripcion_del_proceso="
-    +this.consulta
-    +"&&fecha_de_inicio_del_contrato="
-    +this.fechaInicio
-    +"&&fecha_de_fin_del_contrato="
-    +this.fechaFinal
+    //+"&&descripcion_del_proceso="
+    //+this.consulta
+    //+"&&fecha_de_inicio_del_contrato="
+    //+this.fechaInicio
+    //+"&&fecha_de_fin_del_contrato="
+    //+this.fechaFinal
     +"&&departamento="
-    +this.departamentoContrato;
-  
+    +this.departamentoContrato.replace(" ","%20");
+ 
+ 
+    //Emite la consulta
+    this.eventService.consultaEvent.emit(stringConsulta);
+
+
+    //registra la consulta en la base de datos
     this.consultaService.registarConsulta(consulta).subscribe(data=>{
       this.listaConsulta.push(consulta);
     })
+    
 
-    this.consultaSecopIIService.consultaPersonalizada(stringConsulta).subscribe(data=>{
-      console.log("hola")
-    })
 
+
+    
   }
 
 }
